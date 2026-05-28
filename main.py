@@ -1,73 +1,61 @@
 # Hemodynamics in a Stenosed Artery
+# ============================================================
 
-## Overview
-This project simulates blood flow behavior inside a stenosed (narrowed) artery using simplified biomechanical models in Python.
+import numpy as np
+import matplotlib.pyplot as plt
 
-The simulation investigates:
-- Arterial narrowing geometry
-- Blood velocity changes
-- Reynolds number variation
-- Wall shear stress distribution
+# artery length
+x = np.linspace(0, 10, 200)
 
----
+# stenosis geometry
+radius = 1 - 0.5 * np.exp(-((x - 5)**2) / 1.5)
 
-## Background
-Arterial stenosis reduces vessel diameter and increases blood velocity due to conservation of mass. Elevated velocity may increase wall shear stress and alter flow stability.
+# simplified velocity
+velocity = 1 / radius
 
-This simplified model demonstrates fundamental hemodynamic principles commonly used in cardiovascular biomechanics.
+# blood properties
+rho = 1060      # kg/m^3
+mu = 0.004      # Pa.s
+D = 2 * radius * 0.003
 
----
+# Reynolds number
+Re = rho * velocity * D / mu
 
-## Governing Equations
+# Wall shear stress
+tau = 4 * mu * velocity / D
 
-### Reynolds Number
-\[
-Re = \frac{\rho U D}{\mu}
-\]
+# =========================
+# PLOTS
+# =========================
 
-Where:
-- \( \rho \) = blood density
-- \( U \) = velocity
-- \( D \) = vessel diameter
-- \( \mu \) = dynamic viscosity
+plt.figure(figsize=(10,5))
+plt.plot(x, radius, linewidth=3)
+plt.title("Artery Radius Along Length")
+plt.xlabel("Length of Artery")
+plt.ylabel("Normalized Radius")
+plt.grid(True)
+plt.show()
 
----
+plt.figure(figsize=(10,5))
+plt.plot(x, velocity, color='r', linewidth=3)
+plt.title("Blood Velocity in Stenosed Artery")
+plt.xlabel("Length of Artery")
+plt.ylabel("Velocity")
+plt.grid(True)
+plt.show()
 
-### Wall Shear Stress
-\[
-\tau = \frac{4 \mu U}{D}
-\]
+plt.figure(figsize=(10,5))
+plt.plot(x, Re, color='g', linewidth=3)
+plt.title("Reynolds Number Along Artery")
+plt.xlabel("Length of Artery")
+plt.ylabel("Re")
+plt.grid(True)
+plt.show()
 
----
-
-## Features
-- Gaussian-shaped stenosis geometry
-- Velocity profile visualization
-- Reynolds number analysis
-- Wall shear stress estimation
-- Scientific plotting with Matplotlib
-
----
-
-## Technologies Used
-- Python
-- NumPy
-- Matplotlib
-
----
-
-## Results
-The simulation shows:
-- Increased velocity at the stenosis region
-- Elevated Reynolds number
-- Increased wall shear stress near narrowing
-
-These effects are consistent with basic cardiovascular fluid mechanics.
-
----
-
-## How to Run
-
-```bash
-pip install numpy matplotlib
-python stenosis_simulation.py
+plt.figure(figsize=(10,5))
+plt.plot(x, tau, color='purple', linewidth=3)
+plt.title("Wall Shear Stress")
+plt.xlabel("Length of Artery")
+plt.ylabel("Shear Stress (Pa)")
+plt.grid(True)
+plt.show()
