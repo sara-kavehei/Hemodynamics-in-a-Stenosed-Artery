@@ -56,5 +56,10 @@ The simulation shows:
 - Elevated Reynolds number
 - Increased wall shear stress near narrowing
 
+  
+
+```bash
+pip install numpy matplotlib
+python stenosis_simulation.py
 
   
