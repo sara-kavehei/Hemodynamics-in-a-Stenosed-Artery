@@ -14,29 +14,23 @@ The simulation investigates:
 ## Background
 Arterial stenosis reduces vessel diameter and increases blood velocity due to conservation of mass. Elevated velocity may increase wall shear stress and alter flow stability.
 
-This simplified model demonstrates fundamental hemodynamic principles commonly used in cardiovascular biomechanics.
-
 ---
 
 ## Governing Equations
 
 ### Reynolds Number
-\[
-Re = \frac{\rho U D}{\mu}
-\]
+Re = rho*U*D/mu
 
 Where:
-- \( \rho \) = blood density
-- \( U \) = velocity
-- \( D \) = vessel diameter
-- \( \mu \) = dynamic viscosity
+- rho = blood density
+- U = velocity
+- D = vessel diameter
+- mu = dynamic viscosity
 
 ---
 
 ### Wall Shear Stress
-\[
-\tau = \frac{4 \mu U}{D}
-\]
+tau = 4*mu*U/D
 
 ---
 
@@ -62,12 +56,5 @@ The simulation shows:
 - Elevated Reynolds number
 - Increased wall shear stress near narrowing
 
-These effects are consistent with basic cardiovascular fluid mechanics.
 
----
-
-## How to Run
-
-```bash
-pip install numpy matplotlib
-python stenosis_simulation.py
+  
