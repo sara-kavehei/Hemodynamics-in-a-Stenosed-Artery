@@ -58,8 +58,5 @@ The simulation shows:
 
   
 
-```bash
-pip install numpy matplotlib
-python stenosis_simulation.py
 
   
