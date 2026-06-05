@@ -7,16 +7,23 @@ import matplotlib.pyplot as plt
 # artery length
 x = np.linspace(0, 10, 200)
 
-# stenosis geometry
-radius = 1 - 0.5 * np.exp(-((x - 5)**2) / 1.5)
+# healthy artery radius
+r0 = 0.003
 
-# simplified velocity
-velocity = 1 / radius
+# stenosis geometry
+radius = r0 * (1 - 0.5 * np.exp(-((x - 5)**2) / 1.5))
+
+# diameter
+D = 2 * radius
+
+# continuity equation
+Q = 1e-5
+velocity = Q / (np.pi * radius**2)
+
 
 # blood properties
 rho = 1060      # kg/m^3
 mu = 0.004      # Pa.s
-D = 2 * radius * 0.003
 
 # Reynolds number
 Re = rho * velocity * D / mu
